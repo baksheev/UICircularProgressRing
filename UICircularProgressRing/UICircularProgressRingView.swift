@@ -369,7 +369,20 @@ import UIKit
         }
     }
     
-    
+    /**
+     The image which will be used to fill the inner ring.
+
+     Only used when `ringStyle` is `.image`
+
+     ## Author
+     Alexander Baksheev
+     */
+    @objc open var image: UIImage? {
+        didSet {
+            self.ringLayer.image = self.image
+        }
+    }
+
     // MARK: Outer Ring properties
     
     /**

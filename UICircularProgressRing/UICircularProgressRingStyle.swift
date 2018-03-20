@@ -44,4 +44,6 @@
     case dotted = 4
     /// Inner ring is placed ontop of the outer ring and it has a gradient
     case gradient = 5
+    /// Inner ring is filled by the image
+    case image = 6
 }

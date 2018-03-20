@@ -83,6 +83,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var gradientStartPosition: UICircularProgressRingGradientPosition
     @NSManaged var gradientEndPosition: UICircularProgressRingGradientPosition
     
+    @NSManaged var image: UIImage?
+
     @NSManaged var startAngle: CGFloat
     @NSManaged var endAngle: CGFloat
     
@@ -304,6 +306,18 @@ class UICircularProgressRingLayer: CAShapeLayer {
             drawGradient(gradient, start: gradientStartPosition,
                          end: gradientEndPosition, inContext: ctx)
             
+            ctx.restoreGState()
+        }
+
+        if ringStyle == .image, let image = self.image {
+            ctx.saveGState()
+            ctx.addPath(innerPath.cgPath)
+            ctx.replacePathWithStrokedPath()
+            ctx.clip()
+
+            let imageRect = CGRect(origin: .zero, size: image.size)
+            ctx.draw(image.cgImage!, in: imageRect)
+
             ctx.restoreGState()
         }
     }
