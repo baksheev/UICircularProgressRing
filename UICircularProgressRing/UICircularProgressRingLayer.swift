@@ -315,8 +315,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             ctx.replacePathWithStrokedPath()
             ctx.clip()
 
-            let imageRect = CGRect(origin: .zero, size: image.size)
-            ctx.draw(image.cgImage!, in: imageRect)
+            ctx.draw(image.cgImage!, in: bounds)
 
             ctx.restoreGState()
         }
